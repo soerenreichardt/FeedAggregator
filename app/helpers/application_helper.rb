@@ -9,4 +9,12 @@ module ApplicationHelper
 			page_title + " | " + base_title
 		end
 	end
+
+	def valid_object
+		if @user != nil
+			return @user
+		elsif @feed != nil
+			return @feed
+		end
+	end
 end

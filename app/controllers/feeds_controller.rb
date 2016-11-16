@@ -28,7 +28,10 @@ class FeedsController < ApplicationController
 
     respond_to do |format|
       if @feed.save
-        format.html { redirect_to @feed, notice: 'Feed was successfully created.' }
+        format.html { 
+          redirect_to @feed
+          flash[:success] = 'Feed was successfully created.' 
+        }
         format.json { render :show, status: :created, location: @feed }
       else
         format.html { render :new }
@@ -42,7 +45,9 @@ class FeedsController < ApplicationController
   def update
     respond_to do |format|
       if @feed.update(feed_params)
-        format.html { redirect_to @feed, notice: 'Feed was successfully updated.' }
+        format.html { 
+          redirect_to @feed, 
+          flash[:success] = 'Feed was successfully updated.' }
         format.json { render :show, status: :ok, location: @feed }
       else
         format.html { render :edit }
@@ -56,7 +61,10 @@ class FeedsController < ApplicationController
   def destroy
     @feed.destroy
     respond_to do |format|
-      format.html { redirect_to feeds_url, notice: 'Feed was successfully destroyed.' }
+      format.html { 
+        redirect_to feeds_url
+        flash[:success] = 'Feed was successfully destroyed.' 
+      }
       format.json { head :no_content }
     end
   end
