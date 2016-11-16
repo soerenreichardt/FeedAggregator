@@ -1,5 +1,7 @@
 source 'http://rubygems.org'
 
+gem 'feedjira'
+gem 'twitter-bootstrap-rails'
 gem 'rails',        '5.0.0.1'
 gem 'bcrypt',       '3.1.11'
 gem 'bootstrap-sass',	'3.3.6'
