@@ -48,7 +48,7 @@ class FeedsController < ApplicationController
       if @feed.update(feed_params)
         format.html { 
           redirect_to @feed, 
-          flash[:success] = 'Feed was successfully updated.' }
+          notice: 'Feed was successfully updated.' }
         format.json { render :show, status: :ok, location: @feed }
       else
         format.html { render :edit }
