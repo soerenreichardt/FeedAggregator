@@ -55,6 +55,7 @@ class FeedsController < ApplicationController
         format.json { render json: @feed.errors, status: :unprocessable_entity }
       end
     end
+    parse_entries
   end
 
   # DELETE /feeds/1
