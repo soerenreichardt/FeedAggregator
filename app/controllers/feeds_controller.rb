@@ -38,6 +38,7 @@ class FeedsController < ApplicationController
         format.json { render json: @feed.errors, status: :unprocessable_entity }
       end
     end
+    parse_entries
   end
 
   # PATCH/PUT /feeds/1
@@ -78,5 +79,14 @@ class FeedsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def feed_params
       params.require(:feed).permit(:name, :url, :description)
+    end
+    # Parse the feed URL and add all entries
+    def parse_entries
+      content = Feedjira::Feed.fetch_and_parse @feed.url
+      content.entries.each do |entry|
+        local_entry = @feed.entries.where(title: entry.title).first_or_initialize
+        local_entry.update_attributes(content: entry.content, author: entry.author, url: entry.url,
+                                      published: entry.published)
+      end
     end
 end
