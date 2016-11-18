@@ -85,9 +85,11 @@ class FeedsController < ApplicationController
     def parse_entries
       content = Feedjira::Feed.fetch_and_parse @feed.url
       content.entries.each do |entry|
+        if entry.content
         local_entry = @feed.entries.where(title: entry.title).first_or_initialize
         local_entry.update_attributes(content: entry.content, author: entry.author, url: entry.url,
                                       published: entry.published)
+        end
       end
     end
 end
