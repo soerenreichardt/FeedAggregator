@@ -4,4 +4,4 @@
   <p>
     <%= @entry.content.html_safe %>
   </p>
-  </div>
+</div>
