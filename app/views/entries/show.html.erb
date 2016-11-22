@@ -1,7 +1,10 @@
 <div class="container">
   <h3><%= link_to @entry.title, @entry.url %></h3>
-  <i>published on <%= @entry.published %> by <%= @entry.author %></i>
+  <i>published on <%= @entry.published %></i>
   <p>
     <%= @entry.content.html_safe %>
+  </p>
+  <p>
+  	<a href="<%=@entry.url%>">Show more</a>
   </p>
   </div>
