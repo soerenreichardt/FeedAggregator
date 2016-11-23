@@ -44,7 +44,8 @@ class FeedsController < ApplicationController
   # PATCH/PUT /feeds/1
   # PATCH/PUT /feeds/1.json
   def update
-    respond_to do |format|
+      destroy_entries
+      respond_to do |format|
       if @feed.update(feed_params)
         format.html { 
           redirect_to @feed, 
@@ -90,5 +91,9 @@ class FeedsController < ApplicationController
         local_entry.update_attributes(content: entry.summary, author: entry.author, url: entry.url,
                                       published: entry.published)
       end
+    end
+
+    def destroy_entries
+      @feed.entries.destroy_all
     end
 end
