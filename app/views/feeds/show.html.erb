@@ -15,6 +15,19 @@
   <%= @feed.description %>
 </p>
 
+<% if logged_in? %>
+	<p>
+		<strong>Subscribe</strong>
+	</p>
+<% end %>
+
 <%= link_to 'Edit', edit_feed_path(@feed) %> |
 <%= link_to 'Back', feeds_path %> |
 <%= link_to 'Show Entries', entries_path %>
+<% if logged_in? %>
+	<% if current_user.subscribed_to(@feed) %>
+		<%= link_to 'Unsubscribe', unsubscribe_feed_path, method: :delete %>
+	<% else %>
+		<%= link_to 'Subscribe', subscribe_feed_path, method: :post %>
+	<% end %>
+<% end %>

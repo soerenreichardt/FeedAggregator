@@ -21,6 +21,16 @@
         <td><%= link_to 'Show', feed %></td>
         <td><%= link_to 'Edit', edit_feed_path(feed) %></td>
         <td><%= link_to 'Destroy', feed, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% if logged_in? %>
+          <td>
+          <% if current_user.subscribed_to(feed) %>
+            <%= link_to 'Unsubscribe', unsubscribe_feed_path(feed.id), method: :delete, id: feed %>
+          <% else %>
+            <%= link_to 'Subscribe', subscribe_feed_path(feed.id), method: :post, id: feed %>
+          <% end %>
+          </td>
+        <% end %>
+
       </tr>
     <% end %>
   </tbody>

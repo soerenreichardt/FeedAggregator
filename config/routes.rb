@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   resources :feeds do
     member do
       resources :entries, only: [:index, :show]
+      post    '/subscribe',   to: 'feed_subscriptions#subscribe'
+      delete  '/unsubscribe',   to: 'feed_subscriptions#unsubscribe'
     end
   end
 
