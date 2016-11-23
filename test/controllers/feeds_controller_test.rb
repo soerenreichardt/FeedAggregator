@@ -2,7 +2,7 @@ require 'test_helper'
 
 class FeedsControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @feed = feeds(:one)
+    @feed = feeds(:ny_times)
   end
 
   test "should get index" do

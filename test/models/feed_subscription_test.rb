@@ -26,16 +26,6 @@ class FeedSubscriptionTest < ActiveSupport::TestCase
   	assert_not_nil user.feeds
   end
 
-  test "user should subscribe and unsubscribe to feeds" do
-  	user = users(:michael)
-  	feed = feeds(:ny_times)
-  	assert_not user.subscribed_to(feed)
-  	user.subscribe(feed)
-  	assert user.subscribed_to(feed)
-  	user.unsubscribe(feed)
-  	assert_not user.subscribed_to(feed)
-  end
-
   test "feeds should count subscribing users" do
   	user = users(:michael)
   	feed = feeds(:ny_times)
