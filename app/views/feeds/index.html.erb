@@ -5,21 +5,22 @@
 <table>
   <thead>
     <tr>
-      <th>Name</th>
+      <th>Name </th> 
       <th>Url</th>
       <th>Description</th>
       <th colspan="3"></th>
     </tr>
   </thead>
-
+<br>
   <tbody>
     <% @feeds.each do |feed| %>
       <tr>
-        <td><%= feed.name %></td>
-        <td><%= feed.url %></td>
-        <td><%= feed.description %></td>
-        <td><%= link_to 'Show', feed %></td>
-        <td><%= link_to 'Edit', edit_feed_path(feed) %></td>
+      <td><%= feed.name %>|-(ツ)-|</td>
+
+        <td><%= feed.url %>|-(ツ)-|</td>
+        <td><%= feed.description %>|-(ツ)-|</td>
+        <td><%= link_to 'Show', feed %>|-(ツ)-|</td>
+        <td><%= link_to 'Edit', edit_feed_path(feed) %>|-(ツ)-|</td>
         <td><%= link_to 'Destroy', feed, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <% if logged_in? %>
           <td>
@@ -37,5 +38,7 @@
 </table>
 
 <br>
+<br>
+
 
 <%= link_to 'New Feed', new_feed_path %>
