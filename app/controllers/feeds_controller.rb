@@ -90,8 +90,17 @@ class FeedsController < ApplicationController
       content.entries.each do |entry|
 
         local_entry = @feed.entries.where(title: entry.title).first_or_initialize
-        local_entry.update_attributes(content: entry.summary, author: entry.author, url: entry.url,
+        local_entry.update_attributes(author: entry.author, url: entry.url,
                                       published: entry.published)
+        if entry.content
+           local_entry.update_attributes(content: entry.content)
+        elsif entry.summary
+          local_entry.update_attributes(content: entry.summary)
+        elsif entry.description
+          local_entry.update_attributes(content: entry.description)
+        end
+        
+
       end
     end
 
