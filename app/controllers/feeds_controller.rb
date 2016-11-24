@@ -28,6 +28,7 @@ class FeedsController < ApplicationController
 
     respond_to do |format|
       if @feed.save
+        parse_entries
         format.html { 
           redirect_to @feed
           flash[:success] = 'Feed was successfully created.' 
@@ -38,7 +39,7 @@ class FeedsController < ApplicationController
         format.json { render json: @feed.errors, status: :unprocessable_entity }
       end
     end
-    parse_entries
+    
   end
 
   # PATCH/PUT /feeds/1
@@ -47,16 +48,17 @@ class FeedsController < ApplicationController
       destroy_entries
       respond_to do |format|
       if @feed.update(feed_params)
+        parse_entries
         format.html { 
-          redirect_to @feed, 
-          notice: 'Feed was successfully updated.' }
+          redirect_to @feed
+          flash[:success] = 'Feed was successfully created.' 
+        }
         format.json { render :show, status: :ok, location: @feed }
       else
         format.html { render :edit }
         format.json { render json: @feed.errors, status: :unprocessable_entity }
       end
     end
-    parse_entries
   end
 
   # DELETE /feeds/1
@@ -88,8 +90,17 @@ class FeedsController < ApplicationController
       content.entries.each do |entry|
 
         local_entry = @feed.entries.where(title: entry.title).first_or_initialize
-        local_entry.update_attributes(content: entry.summary, author: entry.author, url: entry.url,
+        local_entry.update_attributes(author: entry.author, url: entry.url,
                                       published: entry.published)
+        if entry.content
+           local_entry.update_attributes(content: entry.content)
+        elsif entry.summary
+          local_entry.update_attributes(content: entry.summary)
+        elsif entry.description
+          local_entry.update_attributes(content: entry.description)
+        end
+        
+
       end
     end
 
