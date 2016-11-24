@@ -1,3 +1,5 @@
+require 'will_paginate/array'
+
 class UsersController < ApplicationController
 
 	def show
@@ -17,6 +19,22 @@ class UsersController < ApplicationController
 			redirect_to @user
 		else
 			render 'new'
+		end
+	end
+
+	def dashboard
+		if logged_in?
+			@entries_list = Array.new
+			current_user.feeds.each do |feed|
+				@entries_list.concat(feed.entries)
+			end
+
+			# sort by publish date
+			@entries_list.sort_by! do |entry|
+				entry[:published]
+			end
+			@entries_list.reverse!
+			@entries_list = @entries_list.paginate(page: params[:page], per_page: 15)
 		end
 	end
 
