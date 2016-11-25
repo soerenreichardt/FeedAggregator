@@ -1,13 +1,18 @@
+<!-- TODO: include tooltips.js from javascript assets -->
+<script>
+$(document).on("ready page:change", function() {
+    $('.tag-tooltip').tooltip();
+});
+</script>
 <p id="notice"><%= notice %></p>
 
 <h1>Feeds</h1>
 
-<table>
+<table class="table table-hover">
   <thead>
     <tr>
-      <th>Name </th> 
-      <th>Url</th>
-      <th>Description</th>
+      <th />
+      <th width="20" />
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -15,23 +20,38 @@
   <tbody>
     <% @feeds.each do |feed| %>
       <tr>
-      <td><%= feed.name %>|-(ツ)-|</td>
+        <td><%= link_to feed.name, entries_path(feed.id) %></td>
 
-        <td><%= feed.url %>|-(ツ)-|</td>
-        <td><%= feed.description %>|-(ツ)-|</td>
-        <td><%= link_to 'Show', feed %>|-(ツ)-|</td>
-        <td><%= link_to 'Edit', edit_feed_path(feed) %>|-(ツ)-|</td>
-        <td><%= link_to 'Destroy', feed, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= feed.description %></td>
+        <td><%= link_to '<span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>'.html_safe, 
+                    feed,
+                    class: "tag-tooltip",
+                    data: { toggle: "tooltip" },
+                    'data-placement': 'top',
+                    title: 'Information' %>
+        </td>
         <% if logged_in? %>
           <td>
           <% if current_user.subscribed_to(feed) %>
-            <%= link_to 'Unsubscribe', unsubscribe_feed_path(feed.id), method: :delete, id: feed %>
+            <%= link_to '<span class="glyphicon glyphicon-minus" aria-hidden="true"></span>'.html_safe, 
+                    unsubscribe_feed_path(feed.id), 
+                    method: :delete,
+                    class: "tag-tooltip", 
+                    data: { toggle: "tooltip" }, 
+                    'data-placement': 'top', 
+                    title: 'Unsubscribe' %>
           <% else %>
-            <%= link_to 'Subscribe', subscribe_feed_path(feed.id), method: :post, id: feed %>
+              <%= link_to '<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>'.html_safe, 
+                    subscribe_feed_path(feed.id),
+                    method: :post,
+                    class: "tag-tooltip", 
+                    data: { toggle: "tooltip" }, 
+                    'data-placement': 'top', 
+                    title: 'Subscribe' %>
           <% end %>
           </td>
         <% end %>
-
+        <td><%= link_to 'Destroy', feed, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -41,4 +61,4 @@
 <br>
 
 
-<%= link_to 'New Feed', new_feed_path %>
+<%= link_to 'New Feed', new_feed_path, class: 'btn btn-default btn-lg' %>

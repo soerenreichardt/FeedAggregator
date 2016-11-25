@@ -4,14 +4,18 @@
       <div class="container">
         <h1>Need Help?</h1>
         <p>The following Guide will help you through the first steps of Using Feedalligator</p>
-<h3> Step one</h3>
-<p><%= link_to "Sign Up", signup_path, class: 'btn btn-primary btn-lg' %></p>
+<h3 id="step_one">Step one</h3>
+<% if logged_in? %>
+	<p>Looks like you are already an Alligator, take a look at <a href="#step_two">step two</a></p>
+<% else %>
+	<p><%= link_to "Sign Up", signup_path, class: 'btn btn-primary btn-lg' %></p>
+<% end %>
 <img src="http://www.sfb600-online.uni-trier.de/hilfe/bilder-fuer-hilfe/bilder-bibliographie/platzhalter.jpg/image_preview" alt="SignUpBild" class="img-responsive" >
-<h3> Step two </h3>
+<h3 id="step_two">Step two</h3>
 <p> Hier eintragen</p>
 <img src="http://www.sfb600-online.uni-trier.de/hilfe/bilder-fuer-hilfe/bilder-bibliographie/platzhalter.jpg/image_preview" alt="SignUpBild">
 
-<h3> Step three </h3>
+<h3 id="step_three">Step three</h3>
 <p> Hier eintragen</p>
 <img src="http://www.sfb600-online.uni-trier.de/hilfe/bilder-fuer-hilfe/bilder-bibliographie/platzhalter.jpg/image_preview" alt="SignUpBild">
 <h3> Step four </h3>
