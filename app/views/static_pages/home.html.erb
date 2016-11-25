@@ -4,10 +4,10 @@
       <div class="container">
         <h1>Be like an alligator and only consume whatever you want!</h1>
         <p>How to be a superior Feedalligator? Just click the Button!</p>
-        <p><a class="btn btn-primary btn-lg" href="/help" role="button">Guide &raquo;</a></p>
+        <p><%= link_to "Guide &raquo;".html_safe, help_path, class: "btn btn-primary btn-lg" %></p>
 		
 	    <p> Already in the Club? Lets go!</p>
-	    <p><a class="btn btn-primary btn-lg" href="/login" role="button">Log In &raquo;</a></p>
+	    <p><%= link_to "Log In &raquo;".html_safe, login_path, class: "btn btn-primary btn-lg" %></p>
       </div>
     </div>
 	
