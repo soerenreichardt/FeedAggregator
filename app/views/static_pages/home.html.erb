@@ -1,45 +1,72 @@
 <!-- Main jumbotron for a primary marketing message or call to action -->
+<% if !logged_in? %>
     <div class="jumbotron">
       <div class="container">
         <h1>Be like an alligator and only consume whatever you want!</h1>
         <p>How to be a superior Feedalligator? Just click the Button!</p>
         <p><a class="btn btn-primary btn-lg" href="/help" role="button">Guide &raquo;</a></p>
-
+		
+	    <p> Already in the Club? Lets go!</p>
+	    <p><a class="btn btn-primary btn-lg" href="/login" role="button">Log In &raquo;</a></p>
+      </div>
+    </div>
+	
+<% else %>
+	<!--<div id="wrapper">-->
+		
+	  <!--<div id="sidebar-wrapper">
+		<ul class="sidebar-nav">
+			<li class="sidebar-brand">
+			  <a href="#">#Start Bootstrap#</a>
+			</li>
+			<li>
+			  <a href="#">Dashboard</a>
+			</li>
+			<li>
+			  <a href="#">Shortcuts</a>
+			</li>
+			<li>
+			  <a href="#">Overview</a>
+			</li>
+		</ul>
+	  </div>-->
+	
+		<div class="container">
+		  <!-- Example row of columns -->
+		  <div class="row">
+			<div class="col-md-4">
+			  <h2>Staff</h2>
+			  <p>Stellt euch vor hier würden sinnvolle Dinge stehen. </p>
+			</div>
+			
+			<div class="col-md-4">
+			  <h2>Staff</h2>
+			  <p>Stellt euch vor hier würden sinnvolle Dinge stehen. </p>
+			</div>
+			
+			<div class="col-md-4">
+			  <h2>Staff</h2>
+			  <p>Stellt euch vor hier würden sinnvolle Dinge stehen.</p>
+			</div>
+		  </div>
+		  
+		  <hr>
+		  <p> Viel Spaß wünscht euer </p>
+		  <p>Feedalligator Team</p>
+		  
+		</div> <!-- /container -->
+	<!--</div> <!-- /wrapper -->-->
+<% end %>
+	
+	
 <!-- <li><%= link_to "Help", 	help_path %></li> -->
 
 <!-- &raquo; -->
 
-<p> Already in the Club? Lets go!</p>
-<p><a class="btn btn-primary btn-lg" href="/login" role="button">Log In &raquo;</a></p>
 
-      </div>
-    </div>
 
-    <div class="container">
-      <!-- Example row of columns -->
-      <div class="row">
-        <div class="col-md-4">
-          <h2>Staff</h2>
-          <p>Stellt euch vor hier würden sinnvolle Dinge stehen. </p>
-          
-        </div>
-        <div class="col-md-4">
-          <h2>Staff</h2>
-          <p>Stellt euch vor hier würden sinnvolle Dinge stehen. </p>
-         
-       </div>
-        <div class="col-md-4">
-          <h2>Staff</h2>
-          <p>Stellt euch vor hier würden sinnvolle Dinge stehen.</p>
-          
-        </div>
-      </div>
 
-      <hr>
-<p> Viel Spaß wünscht euer </p>
-<p>Feedalligator Team</p>
-      
-    </div> <!-- /container -->
+
 
 
 
