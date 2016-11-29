@@ -24,13 +24,13 @@
 
 #sidebar-wrapper {
     z-index: 1000;
-    position: fixed;
-    left: 250px;
+    position: fixed; /* fixed;*/
+    /*left: 250px;*/
     width: 0;
     height: 100%;
-    margin-left: -250px;
+    margin-left: 20px;
     overflow-y: auto;
-    background: #000;
+    /*background: #999;*/
     -webkit-transition: all 0.5s ease;
     -moz-transition: all 0.5s ease;
     -o-transition: all 0.5s ease;
@@ -110,7 +110,7 @@
     }
 
     #sidebar-wrapper {
-        width: 250px;
+        width: 200px;
     }
 
     #wrapper.toggled #sidebar-wrapper {
