@@ -1,9 +1,21 @@
 <div class="container">
-  <% @entries.each do |entry| %>
-  <div class="panel panel-default">
-    <div class="panel-body">
-      <%= link_to entry.title, entry %> - <i> published <%= time_ago_in_words(entry.published) %> ago.</i>
-    </div>
-  </div>
+  <% @entries.each_with_index do |entry, index| %>
+  		<% if index % 3 == 0 %>
+  			<div class="row">
+  		<% end %>
+		<div class="col col-md-4">
+			<div class="panel panel-default panel-select">
+				<div class="panel-heading text-center">
+					<span class="entry-header"><%= link_to entry.title, entry %></span>
+				</div>
+				<div class="panel-body">
+			    	<%= entry.content.html_safe %>
+			    	<i> published <%= time_ago_in_words(entry.published) %> ago.</i>
+				</div>
+			</div>
+		</div>
+		<% if index % 3 == 2 %>
+			</div>
+		<% end %>
   <% end %>
   </div>
