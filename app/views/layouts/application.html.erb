@@ -13,7 +13,7 @@
   <body>
   	<%= render 'layouts/header' %>
 	<%= if logged_in? && action_name == "dashboard"
-			render 'layouts/sidebar' 
+			#render 'layouts/sidebar' 
 	end %>
   	<div class="container">
       <% flash.each do |message_type, message| %>
