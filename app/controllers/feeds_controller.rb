@@ -109,7 +109,7 @@ class FeedsController < ApplicationController
 
         # media content
         if entry.image
-          local_entry.update_attributes(media_content_url: :image)
+          local_entry.update_attributes(media_content_url: entry.image)
         end
 
       end

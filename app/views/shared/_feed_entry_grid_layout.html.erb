@@ -6,7 +6,14 @@
 	<div class="col col-md-4">
 		<div class="panel panel-default panel-select">
 			<div class="panel-heading text-center">
-				<span class="entry-header"><%= link_to entry.title, entry %></span>
+				<figure class="caption">
+					<% if entry.media_content_url != nil %>
+						<%= image_tag(entry.media_content_url, class: "heading-image") %>
+					<% else %>
+						<%= image_tag("image", class: "heading-image") %>
+					<% end %>
+					<figcaption class="caption-text"><%= link_to entry.title, entry %></figcaption>
+				</figure>
 			</div>
 			<div class="panel-body">
 		    	<%= entry.content.html_safe %>
