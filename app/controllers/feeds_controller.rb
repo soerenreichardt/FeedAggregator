@@ -92,14 +92,25 @@ class FeedsController < ApplicationController
         local_entry = @feed.entries.where(title: entry.title).first_or_initialize
         local_entry.update_attributes(author: entry.author, url: entry.url,
                                       published: entry.published)
+
+        # content
         if entry.content
-           local_entry.update_attributes(content: entry.content)
+          local_entry.update_attributes(content: entry.content)
         elsif entry.summary
           local_entry.update_attributes(content: entry.summary)
         elsif entry.description
           local_entry.update_attributes(content: entry.description)
         end
         
+        # categories
+        if entry.categories
+          local_entry.update_attributes(categories: entry.categories)
+        end
+
+        # media content
+        if entry.image
+          local_entry.update_attributes(media_content_url: :image)
+        end
 
       end
     end

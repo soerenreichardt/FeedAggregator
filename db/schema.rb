@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161117155532) do
+ActiveRecord::Schema.define(version: 20161201134017) do
 
   create_table "entries", force: :cascade do |t|
     t.string   "title"
@@ -19,8 +19,10 @@ ActiveRecord::Schema.define(version: 20161117155532) do
     t.string   "url"
     t.string   "author"
     t.integer  "feed_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.string   "media_content_url"
+    t.string   "categories"
   end
 
   create_table "feed_subscriptions", force: :cascade do |t|
