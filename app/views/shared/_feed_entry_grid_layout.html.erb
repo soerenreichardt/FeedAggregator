@@ -9,10 +9,10 @@
 				<figure class="caption">
 					<% if entry.media_content_url != nil %>
 						<%= image_tag(entry.media_content_url, class: "heading-image") %>
+						<figcaption class="caption-text"><%= link_to entry.title, entry %></figcaption>
 					<% else %>
-						<%= image_tag("image", class: "heading-image") %>
+						<figcaption class="caption-text-no-image"><%= link_to entry.title, entry %></figcaption>
 					<% end %>
-					<figcaption class="caption-text"><%= link_to entry.title, entry %></figcaption>
 				</figure>
 			</div>
 			<div class="panel-body">

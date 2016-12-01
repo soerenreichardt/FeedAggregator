@@ -25,10 +25,13 @@ $dark-gray: #AAA;
 	font-weight: 700;
 	letter-spacing: -1px;
 	font-weight: bold;
-	background-color: rgba(0, 0, 0, 0.7);
-	a {
+	background-color: rgba(0, 0, 0, 0.7);	
+}
 
-	}
+.caption-text-no-image {
+	@extend .caption-text;
+	position: relative;
+	background-color: rgba(0, 0, 0, 0)
 }
 
 .panel-select:hover {
@@ -38,6 +41,7 @@ $dark-gray: #AAA;
 .heading-image {
 	position: relative;
 	width: 100%;
+	border-radius: 2px 2px 0 0;
 }
 
 .panel-heading {
