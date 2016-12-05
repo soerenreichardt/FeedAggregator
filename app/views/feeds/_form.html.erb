@@ -1,21 +1,18 @@
-<%= form_for(feed) do |f| %>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for(feed) do |f| %>
+      <%= render 'shared/error_messages' %>
 
-  <div class="field">
-    <%= f.label :name %>
-    <%= f.text_field :name %>
-  </div>
+      <%= f.label :name %>
+      <%= f.text_field :name, class: 'form-control' %>
 
-  <div class="field">
-    <%= f.label :url %>
-    <%= f.text_field :url %>
-  </div>
+      <%= f.label :url %>
+      <%= f.text_field :url, class: 'form-control' %>
 
-  <div class="field">
-    <%= f.label :description %>
-    <%= f.text_area :description %>
-  </div>
+      <%= f.label :description %>
+      <%= f.text_area :description, class: 'form-control' %>
 
-  <div class="actions">
-    <%= f.submit %>
+      <%= f.submit "Create Feed", class: "btn btn-primary" %>
+    <% end %>
   </div>
-<% end %>
+</div>
