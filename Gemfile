@@ -1,5 +1,7 @@
 source 'http://rubygems.org'
 
+gem 'sunspot_rails'
+gem 'sunspot_solr'
 gem 'feedjira'
 gem 'twitter-bootstrap-rails'
 gem 'rails',        '5.0.0.1'

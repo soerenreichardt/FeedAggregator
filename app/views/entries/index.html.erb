@@ -1,3 +1,8 @@
 <div class="container">
+	<%= form_tag entries_path, :method => :get do %>
+  		<p>
+    		<%= text_field_tag :search, params[:search] %>
+    		<%= submit_tag "Search", :name => nil %>
+	<% end %>
 	<%= render partial: 'shared/feed_entry_grid_layout', locals: { entry_list: @entries } %>
 </div>

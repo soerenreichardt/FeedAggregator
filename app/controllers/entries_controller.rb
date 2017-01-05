@@ -2,7 +2,11 @@ class EntriesController < ApplicationController
   before_action :set_feed, only: :index
 
   def index
-    @entries = @feed.entries.order('published desc')
+    @search = Entry.search do 
+      fulltext params[:search]    
+    end
+    @entries = @search.results
+    #@entries = @feed.entries.order('published desc')
   end
 
   def show
