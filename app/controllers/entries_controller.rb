@@ -2,11 +2,14 @@ class EntriesController < ApplicationController
   before_action :set_feed, only: :index
 
   def index
-    @search = Entry.search do 
-      fulltext params[:search]    
+    @search = @feed.entries.search do 
+      fulltext params[:search]
     end
-    @entries = @search.results
-    #@entries = @feed.entries.order('published desc')
+
+    @entries = @search.results.paginate(page: params[:page], per_page: 15)
+    if params[:search].blank?
+      @entries = @feed.entries.all.paginate(page: params[:page], per_page: 15)
+    end
   end
 
   def show

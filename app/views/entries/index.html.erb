@@ -5,4 +5,5 @@
     		<%= submit_tag "Search", :name => nil %>
 	<% end %>
 	<%= render partial: 'shared/feed_entry_grid_layout', locals: { entry_list: @entries } %>
+	<%= will_paginate @entries %>
 </div>
