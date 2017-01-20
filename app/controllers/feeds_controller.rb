@@ -51,13 +51,23 @@ class FeedsController < ApplicationController
         parse_entries
         format.html { 
           redirect_to @feed
-          flash[:success] = 'Feed was successfully created.' 
+          flash[:success] = 'Feed was successfully updated.' 
         }
         format.json { render :show, status: :ok, location: @feed }
       else
         format.html { render :edit }
         format.json { render json: @feed.errors, status: :unprocessable_entity }
       end
+    end
+  end
+
+  def update_entries
+    set_feed
+    destroy_entries
+    parse_entries
+    if @feed.save
+      flash[:success] = 'Feed entries successfully updated.'
+      redirect_to feeds_url
     end
   end
 

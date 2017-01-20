@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   end
 
   resources :feeds
+  get 'feeds/:id/update_entries', to: 'feeds#update_entries', as: 'update_entries'
   #root 'feeds#index'
   
   root 'static_pages#home'

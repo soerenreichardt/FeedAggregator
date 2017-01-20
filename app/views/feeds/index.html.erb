@@ -52,6 +52,7 @@ $(document).on("ready page:change", function() {
           </td>
         <% end %>
         <td><%= link_to 'Destroy', feed, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Update', update_entries_path(feed.id) if Rails.env.development? %></td>
       </tr>
     <% end %>
   </tbody>
