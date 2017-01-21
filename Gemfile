@@ -9,6 +9,7 @@ gem 'nokogiri'
 gem 'highscore'
 gem 'bloomfilter-rb'
 gem 'fast-stemmer'
+gem 'stopwords-filter'
 
 gem 'twitter-bootstrap-rails'
 gem 'rails',        '5.0.0.1'
