@@ -3,6 +3,13 @@ source 'http://rubygems.org'
 gem 'sunspot_rails'
 gem 'sunspot_solr'
 gem 'feedjira'
+
+gem 'whatlanguage'
+gem 'nokogiri'
+gem 'highscore'
+gem 'bloomfilter-rb'
+gem 'fast-stemmer'
+
 gem 'twitter-bootstrap-rails'
 gem 'rails',        '5.0.0.1'
 gem 'bcrypt',       '3.1.11'

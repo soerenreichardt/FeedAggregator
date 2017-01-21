@@ -1,3 +1,6 @@
+require 'whatlanguage'
+require 'nokogiri'
+
 class FeedsController < ApplicationController
   before_action :set_feed, only: [:show, :edit, :update, :destroy]
 
@@ -96,6 +99,7 @@ class FeedsController < ApplicationController
     end
     # Parse the feed URL and add all entries
     def parse_entries
+
       content = Feedjira::Feed.fetch_and_parse @feed.url
       content.entries.each do |entry|
 
@@ -103,29 +107,68 @@ class FeedsController < ApplicationController
         local_entry.update_attributes(author: entry.author, url: entry.url,
                                       published: entry.published)
 
-        # content
+        # search for content
+        entry_content = nil
         if entry.content
-          local_entry.update_attributes(content: entry.content)
+          entry_content = entry.content
         elsif entry.summary
-          local_entry.update_attributes(content: entry.summary)
+          entry_content = entry.summary
         elsif entry.description
-          local_entry.update_attributes(content: entry.description)
+          entry_content = entry.description
         end
+
+        # generate nokogiri document
+        doc = Nokogiri::XML.fragment(entry_content)
         
         # categories
         if entry.categories
-          local_entry.update_attributes(categories: entry.categories)
+          init_whatlanguage
+          category_list = Array.new
+          entry.categories.each do |category|
+            category_list.push(category)
+            #category_list.push(@wl.language(category))
+          end
+          local_entry.update_attributes(categories: category_list)
         end
 
         # media content
-        if entry.image
+        if !entry.image.nil?
           local_entry.update_attributes(media_content_url: entry.image)
+        elsif doc.css('img').nil?
+          local_entry.update_attributes(media_content_url: doc.css('img').first['src'])
+          doc.search('.//img').remove
         end
+
+        # remove links
+        doc.css('a').each { |node| node.replace(node.children) }
+
+        # save content
+        local_entry.update_attributes(content: doc.to_html)
+
+        # print characteristic words
+        text = Highscore::Content.new doc.to_html
+        text.configure do
+          set :ignore_case, true
+          #set :stemming, true
+        end
+
+        keyword_list = Array.new
+        text.keywords.top(10).each do |keyword|
+          keyword_list.push(keyword.text)
+        end
+        p '############### KEYWORDS ###############'
+        p keyword_list
 
       end
     end
 
     def destroy_entries
       @feed.entries.destroy_all
+    end
+
+    def init_whatlanguage
+      if @wl.nil?
+        @wl = WhatLanguage.new(:all)
+      end
     end
 end
