@@ -3,7 +3,9 @@ class EntriesController < ApplicationController
 
   def index
     @search = @feed.entries.search do 
-      fulltext params[:search]
+      fulltext params[:search] do
+		highlight = true
+	  end
     end
 
     @entries = @search.results.paginate(page: params[:page], per_page: 15)

@@ -73,6 +73,7 @@
 			<filter class="solr.StandardFilterFactory"/>
 			<filter class="solr.LowerCaseFilterFactory"/>
 			<filter class="solr.SynonymFilterFactory" synonyms="synonyms.txt" ignoreCase="true" expand="true" tokenizerFactory="solr.StandardTokenizerFactory"/>
+			
 			<filter class="solr.PorterStemFilterFactory"/>
 		</analyzer>
 		<analyzer type="index">
