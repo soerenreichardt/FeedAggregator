@@ -1,9 +1,12 @@
 require 'whatlanguage'
 require 'nokogiri'
 require 'stopwords'
+require 'certified'
 
 class FeedsController < ApplicationController
   before_action :set_feed, only: [:show, :edit, :update, :destroy]
+  before_action :init_whatlanguage, only: [:parse_entries]
+  before_action :init_stopword_files, only: [:parse_entries]
 
   # GET /feeds
   # GET /feeds.json
@@ -98,7 +101,7 @@ class FeedsController < ApplicationController
     def feed_params
       params.require(:feed).permit(:name, :url, :description)
     end
-    # Parse the feed URL and add all entries
+
     def parse_entries
 
       init_whatlanguage
@@ -149,44 +152,55 @@ class FeedsController < ApplicationController
         # save content
         local_entry.update_attributes(content: doc.to_html)
 
-        lang = @wl.language_iso(doc.to_html)
-        content_without_stopwords = nil
-        title_without_stopwords = nil
-        if lang == :en
-          content_without_stopwords = @en_stopwords_filter.filter doc.to_html.downcase.split
-          title_without_stopwords = @en_stopwords_filter.filter entry.title.downcase.split
-        elsif lang == :de
-          content_without_stopwords = @de_stopwords_filter.filter doc.to_html.downcase.split
-          title_without_stopwords = @de_stopwords_filter.filter entry.title.downcase.split
-        end
+        keyword_list = extract_keywords(doc, entry.title)
 
-        # print characteristic words
-        text = Highscore::Content.new content_without_stopwords.join(" ")
-        text.configure do
-          set :ignore_case, true
-          #set :stemming, true
-        end
-
-        title = Highscore::Content.new title_without_stopwords.join(" ")
-        title.configure do
-          set :ignore_case, true
-        end
-
-        keyword_list = Array.new
-        title.keywords.top(2).each do |keyword|
-          keyword_list.push(keyword.text)
-        end
-        text.keywords.top(10).each do |keyword|
-          keyword_list.push(keyword.text)
-        end
         p '############### KEYWORDS ###############'
         p keyword_list
 
       end
     end
 
+  private
     def destroy_entries
       @feed.entries.destroy_all
+    end
+
+    def extract_keywords(doc, title)
+      lang = @wl.language_iso(doc.to_html)
+
+      content_without_stopwords = nil
+      title_without_stopwords = nil
+      if lang == :en
+        content_without_stopwords = @en_stopwords_filter.filter doc.to_html.downcase.split
+        title_without_stopwords = @en_stopwords_filter.filter title.downcase.split
+      elsif lang == :de
+        content_without_stopwords = @de_stopwords_filter.filter doc.to_html.downcase.split
+        title_without_stopwords = @de_stopwords_filter.filter title.downcase.split
+      end
+
+      if !title_without_stopwords.nil?
+        title = Highscore::Content.new title_without_stopwords.join(" ")
+        title.configure do
+          set :ignore_case, true
+        end
+        keyword_list = Array.new
+        title.keywords.top(2).each do |keyword|
+          keyword_list.push(keyword.text)
+        end
+      end
+
+      if !content_without_stopwords.nil?
+        text = Highscore::Content.new content_without_stopwords.join(" ")
+        text.configure do
+          set :ignore_case, true
+          #set :stemming, true
+        end
+        text.keywords.top(10).each do |keyword|
+          keyword_list.push(keyword.text)
+        end
+      end
+
+      return keyword_list
     end
 
     def init_whatlanguage
