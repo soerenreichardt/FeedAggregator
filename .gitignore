@@ -25,3 +25,6 @@ Gemfile.lock
 
 # Ignore all solr files
 /solr/*
+
+# Ignore categories config
+/config/categories.yml
