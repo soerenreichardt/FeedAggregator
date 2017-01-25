@@ -1,0 +1,20 @@
+politics:
+  url: ['http://rss.nytimes.com/services/xml/rss/nyt/World.xml', 'http://rss.nytimes.com/services/xml/rss/nyt/US.xml']
+
+#sports:
+#  url: ['http://rss.nytimes.com/services/xml/rss/nyt/Sports.xml']
+
+science:
+  url: ['http://rss.nytimes.com/services/xml/rss/nyt/Science.xml']
+
+technology:
+  url: ['http://rss.nytimes.com/services/xml/rss/nyt/Technology.xml']
+
+#health:
+#  url: ['http://rss.nytimes.com/services/xml/rss/nyt/Health.xml']
+
+economy:
+  url: ['http://rss.nytimes.com/services/xml/rss/nyt/Economy.xml']
+
+business:
+  url: ['http://rss.nytimes.com/services/xml/rss/nyt/Business.xml']
