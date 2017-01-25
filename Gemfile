@@ -12,6 +12,8 @@ gem 'fast-stemmer'
 gem 'stopwords-filter'
 gem 'open_uri_redirections'
 gem 'certified'
+gem 'classifier'
+gem 'madeleine'
 
 gem 'twitter-bootstrap-rails'
 gem 'rails',        '5.0.0.1'
