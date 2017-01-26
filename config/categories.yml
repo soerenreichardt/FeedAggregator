@@ -1,8 +1,8 @@
 politics:
   url: ['http://rss.nytimes.com/services/xml/rss/nyt/World.xml', 'http://rss.nytimes.com/services/xml/rss/nyt/US.xml']
 
-#sports:
-#  url: ['http://rss.nytimes.com/services/xml/rss/nyt/Sports.xml']
+sports:
+  url: ['http://rss.nytimes.com/services/xml/rss/nyt/Sports.xml']
 
 science:
   url: ['http://rss.nytimes.com/services/xml/rss/nyt/Science.xml']
