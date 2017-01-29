@@ -18,7 +18,7 @@
 			<div class="panel-body">
 		    	<%= entry.content.html_safe %>
 		    	<i> published <%= time_ago_in_words(entry.published) %> ago by <%= entry.feed.name %>.</i>
-		    	<small><%= entry.topics.html_safe if Rails.env.development? %></small>
+		    	<small><%= entry.topics if Rails.env.development? %></small>
 			</div>
 		</div>
 	</div>

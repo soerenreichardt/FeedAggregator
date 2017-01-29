@@ -51,8 +51,23 @@ $(document).ready(function() {
           <% end %>
           </td>
         <% end %>
-        <td><%= link_to 'Destroy', feed, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <td><%= link_to 'Update', update_entries_path(feed.id) if Rails.env.development? %></td>
+        <td><%= link_to '<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>'.html_safe, 
+                    feed, 
+                    method: :delete, 
+                    class: "tag-tooltip",
+                    data: { confirm: 'Are you sure?', toggle: "tooltip" },
+                    'data-placement': 'top',
+                    title: 'Delete' %>
+        </td>
+        <td><%= if Rails.env.development?
+          link_to '<span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>'.html_safe, 
+                    update_entries_path(feed.id),
+                    class: "tag-tooltip",
+                    data: { toggle: "tooltip" },
+                    'data-placement': 'top',
+                    title: 'Update'
+                end %>
+        </td>
       </tr>
     <% end %>
   </tbody>

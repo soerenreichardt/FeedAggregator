@@ -4,8 +4,8 @@ class Entry < ApplicationRecord
   validates :content, presence: true
 
   searchable do 
-	text :title, :boost => 3.5
-  	text :content
+  	text :content, :title
+  	integer :feed_id
   end
   	
 end

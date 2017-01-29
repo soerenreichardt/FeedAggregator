@@ -1,6 +1,7 @@
 <% provide(:title, 'Dashboard') %>
 <div class="container">
 	<div class="container">
+	<%= render partial: 'shared/entry_search', locals: { path: dashboard_path } %>
 	<%= render partial: 'shared/feed_entry_grid_layout', locals: { entry_list: @entries_list } %>
 	<%= will_paginate @entries_list %>
 </div>
