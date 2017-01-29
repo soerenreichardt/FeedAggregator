@@ -4,7 +4,7 @@ class Entry < ApplicationRecord
   validates :content, presence: true
 
   searchable do 
-  	text :content, :title
+  	text :content, :title, :topics
   	date :published
   	integer :feed_id
   end

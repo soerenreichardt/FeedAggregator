@@ -1,27 +1,9 @@
-<div class="container">
+<div class="container" id="entries">
 <% entry_list.each_with_index do |entry, index| %>
 	<% if index % 3 == 0 %>
 		<div class="row">
 	<% end %>
-	<div class="col col-md-4">
-		<div class="panel panel-default panel-select">
-			<div class="panel-heading text-center">
-				<figure class="caption">
-					<% if entry.media_content_url != nil %>
-						<%= image_tag(entry.media_content_url, class: "heading-image") %>
-						<figcaption class="caption-text"><%= link_to entry.title, entry %></figcaption>
-					<% else %>
-						<figcaption class="caption-text-no-image"><%= link_to entry.title, entry %></figcaption>
-					<% end %>
-				</figure>
-			</div>
-			<div class="panel-body">
-		    	<%= entry.content.html_safe %>
-		    	<i> published <%= time_ago_in_words(entry.published) %> ago by <%= entry.feed.name %>.</i>
-		    	<small><%= entry.topics if Rails.env.development? %></small>
-			</div>
-		</div>
-	</div>
+	<%= render partial: 'entries/entry', locals: { entry: entry } %>
 	<% if index % 3 == 2 %>
 		</div>
 	<% end %>

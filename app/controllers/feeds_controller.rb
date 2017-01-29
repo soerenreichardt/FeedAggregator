@@ -42,6 +42,7 @@ class FeedsController < ApplicationController
           redirect_to @feed
           flash[:success] = 'Feed was successfully created.' 
         }
+        format.js {}
         format.json { render :show, status: :created, location: @feed }
       else
         format.html { render :new }

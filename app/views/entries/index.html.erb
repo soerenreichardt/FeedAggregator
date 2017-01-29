@@ -1,5 +1,5 @@
 <div class="container">
 	<%= render partial: 'shared/entry_search', locals: { path: entries_path } %>
-	<%= render partial: 'shared/feed_entry_grid_layout', locals: { entry_list: @entries } %>
+	<div id="entries"><%= render partial: 'shared/feed_entry_grid_layout', locals: { entry_list: @entries } %></div>
 	<%= will_paginate @entries %>
 </div>

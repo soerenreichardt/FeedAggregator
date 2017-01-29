@@ -10,9 +10,23 @@ class EntriesController < ApplicationController
         paginate(page: params[:page], per_page: 15)
       end
       @entries = @search.results
+
+      respond_to do |format|
+        format.html{
+          if @search.results.empty?
+            flash.now[:danger] = 'No search results found'
+          end
+        }
+        format.js{}
+      end
     else
       @entries = @feed.entries.all.paginate(page: params[:page], per_page: 15)
+      respond_to do |format|
+        format.html {}
+        format.js {}
+      end
     end
+
   end
 
   def show

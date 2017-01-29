@@ -28,14 +28,23 @@ class UsersController < ApplicationController
 				@search = Entry.search do
 					fulltext params[:search]
 					with(:feed_id, current_user.feeds.map(&:id))
+					if params[:category].present?
+						with(:topics, params[:category])
+					end
 					order_by :published, :desc
 					paginate(page: params[:page], per_page: 15)
 				end
 				@entries_list = @search.results
 			else
 				@entries_list = Array.new
-				current_user.feeds.each do |feed|
-					@entries_list.concat(feed.entries)
+				if params[:category].present?
+					current_user.feeds.each do |feed|
+						@entries_list.concat(feed.entries.where("topics LIKE ?", "%#{params[:category]}%"))
+					end
+				else
+					current_user.feeds.each do |feed|
+						@entries_list.concat(feed.entries)
+					end
 				end
 
 				# sort by publish date
