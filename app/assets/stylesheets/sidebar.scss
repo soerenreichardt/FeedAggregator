@@ -71,13 +71,13 @@
 .sidebar-nav li a {
     display: block;
     text-decoration: none;
-    color: #999999;
+    color: #FFFFFF;
 }
 
-.sidebar-nav li a:hover {
+.sidebar-nav li a:active {
     text-decoration: none;
     color: #fff;
-    background: rgba(255,255,255,0.2);
+    background: rgba(255,255,255,0);
 }
 
 .sidebar-nav li a:active,
@@ -92,11 +92,11 @@
 }
 
 .sidebar-nav > .sidebar-brand a {
-    color: #999999;
+    color: #FFFFFF;
 }
 
-.sidebar-nav > .sidebar-brand a:hover {
-    color: #fff;
+.sidebar-nav > .sidebar-brand a:active {
+    color: #ffffff;
     background: none;
 }
 

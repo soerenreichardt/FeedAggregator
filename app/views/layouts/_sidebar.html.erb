@@ -1,42 +1,23 @@
 <div id="sidebar-wrapper">
 	<ul class="sidebar-nav">
 	
-		<!-- Gravatar snippet <percentequals #image_tag gravatar_url("you@youremail.com", 64), alt: "" %> -->
+
+
+
+<!-- Ich würde mal sagen die folgenden Kategorien könnten rein: Politics Culture Literature Sports Economy Finance Technology Science Film Gossip -->
+	 
 	
-		<!--<%= APP_CATEGORIES.each do |category, value| %>
-			<p><%= link_to category, dashboard_path(category: category), locals: { category: category } %></p>
-		<% end %>-->
-		<div class="btn-group-vertical btn-group-md" data-toggle="buttons">
+		<div class="btn-group-vertical btn-group-md" >
 			<label class="btn btn-primary sidebar-btn">
-				<input type="checkbox" autocomplete="off"> Politics
+				 <li><%= link_to "Politics",		construction_path %></li>		<!-- bei construction_path den entsprechenden Pfad rein. Bei "Politics" usw den Namen des Buttons reinpacken. -->
 			</label>
 			<label class="btn btn-primary sidebar-btn">
-				<input type="checkbox" autocomplete="off"> Culture
+				  <li><%= link_to "Culture",		construction_path %></li>
 			</label>
 			<label class="btn btn-primary sidebar-btn">
-				<input type="checkbox" autocomplete="off"> Literature
+				  <li><%= link_to "Literature",		construction_path %></li>
 			</label>
-			<label class="btn btn-primary sidebar-btn">
-				<input type="checkbox" autocomplete="off"> Sports
-			</label>
-			<label class="btn btn-primary sidebar-btn">
-				<input type="checkbox" autocomplete="off"> Economy
-			</label>
-			<label class="btn btn-primary sidebar-btn">
-				<input type="checkbox" autocomplete="off"> Finance
-			</label>
-			<label class="btn btn-primary sidebar-btn">
-				<input type="checkbox" autocomplete="off"> Technology
-			</label>
-			<label class="btn btn-primary sidebar-btn">
-				<input type="checkbox" autocomplete="off"> Science
-			</label>
-			<label class="btn btn-primary sidebar-btn">
-				<input type="checkbox" autocomplete="off"> Film
-			</label>
-			<label class="btn btn-primary sidebar-btn">
-				<input type="checkbox" autocomplete="off"> Gossip
-			</label>
-		</div>
+			
+		</div>  
 	</ul>
 </div>
