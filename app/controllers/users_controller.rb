@@ -24,17 +24,27 @@ class UsersController < ApplicationController
 
 	def dashboard
 		if logged_in?
-			@entries_list = Array.new
-			current_user.feeds.each do |feed|
-				@entries_list.concat(feed.entries)
-			end
+			if params[:search].present?
+				@search = Entry.search do
+					fulltext params[:search]
+					with(:feed_id, current_user.feeds.map(&:id))
+					order_by :published, :desc
+					paginate(page: params[:page], per_page: 15)
+				end
+				@entries_list = @search.results
+			else
+				@entries_list = Array.new
+				current_user.feeds.each do |feed|
+					@entries_list.concat(feed.entries)
+				end
 
-			# sort by publish date
-			@entries_list.sort_by! do |entry|
-				entry[:published]
+				# sort by publish date
+				@entries_list.sort_by! do |entry|
+					entry[:published]
+				end
+				@entries_list.reverse!
+				@entries_list = @entries_list.paginate(page: params[:page], per_page: 15)
 			end
-			@entries_list.reverse!
-			@entries_list = @entries_list.paginate(page: params[:page], per_page: 15)
 		end
 	end
 

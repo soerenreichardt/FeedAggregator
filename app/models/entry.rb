@@ -5,6 +5,7 @@ class Entry < ApplicationRecord
 
   searchable do 
   	text :content, :title
+  	date :published
   	integer :feed_id
   end
   	

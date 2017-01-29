@@ -4,10 +4,10 @@ class EntriesController < ApplicationController
   #TODO: suche klappt nicht für einzelne Feeds!
   def index
     if params[:search].present?
-      @search = Entry.search do |e|
-        e.fulltext params[:search]
-        #e.with(:feed_id, @feed.id)
-        e.paginate(page: params[:page], per_page: 15)
+      @search = Entry.search do
+        fulltext params[:search]
+        with(:feed_id, params[:id])
+        paginate(page: params[:page], per_page: 15)
       end
       @entries = @search.results
     else
