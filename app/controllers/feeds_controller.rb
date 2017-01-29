@@ -227,6 +227,9 @@ class FeedsController < ApplicationController
         # add categories to keywords
         keyword_list += category_list unless category_list.nil? or keyword_list.nil?
 
+        # stem keywords
+        keyword_list.map! { |keyword| keyword.to_s.stem }
+
         # classify
         reference_feed = false
         APP_CATEGORIES.each do |category, value|
