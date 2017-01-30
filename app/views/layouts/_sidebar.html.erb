@@ -1,23 +1,11 @@
 <div id="sidebar-wrapper">
 	<ul class="sidebar-nav">
-	
-
-
-
-<!-- Ich würde mal sagen die folgenden Kategorien könnten rein: Politics Culture Literature Sports Economy Finance Technology Science Film Gossip -->
-	 
-	
 		<div class="btn-group-vertical btn-group-md" >
-			<label class="btn btn-primary sidebar-btn">
-				 <li><%= link_to "Politics",		construction_path %></li>		<!-- bei construction_path den entsprechenden Pfad rein. Bei "Politics" usw den Namen des Buttons reinpacken. -->
-			</label>
-			<label class="btn btn-primary sidebar-btn">
-				  <li><%= link_to "Culture",		construction_path %></li>
-			</label>
-			<label class="btn btn-primary sidebar-btn">
-				  <li><%= link_to "Literature",		construction_path %></li>
-			</label>
-			
+			<% APP_CATEGORIES.each do |category, value| %>
+				<label class="btn btn-primary sidebar-btn">
+					<li><%= link_to category.capitalize, dashboard_path(search: category) %></li>
+				</label>
+			<% end %>		
 		</div>  
 	</ul>
 </div>

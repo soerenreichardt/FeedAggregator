@@ -14,6 +14,7 @@ gem 'open_uri_redirections'
 gem 'certified'
 gem 'classifier'
 gem 'madeleine'
+gem 'bootstrap_tokenfield_rails'
 
 gem 'twitter-bootstrap-rails'
 gem 'rails',        '5.0.0.1'
