@@ -42,6 +42,7 @@ class FeedsController < ApplicationController
           redirect_to @feed
           flash[:success] = 'Feed was successfully created.' 
         }
+        format.js {}
         format.json { render :show, status: :created, location: @feed }
       else
         format.html { render :new }
@@ -225,6 +226,9 @@ class FeedsController < ApplicationController
 
         # add categories to keywords
         keyword_list += category_list unless category_list.nil? or keyword_list.nil?
+
+        # stem keywords
+        keyword_list.map! { |keyword| keyword.to_s.stem }
 
         # classify
         reference_feed = false

@@ -76,5 +76,5 @@ $(document).ready(function() {
 <br>
 <br>
 
-
-<%= link_to 'New Feed', new_feed_path, class: 'btn btn-default btn-lg' %>
+<div id="feed-form" style="display:none;"></div>
+<%= link_to 'New Feed', new_feed_path, remote: false, class: 'btn btn-default btn-lg' %>
